@@ -1,26 +1,45 @@
-# HNG12 Stage 0- Public API
-
-## Project overview
-This is a public api that returns the following information in JSON format
--Registered email address used to register on the HNG12 Slack workspace
--The current datetime as an ISO 8601 formatted timestamp
-- The Github URL of the project codebase
+# HNG12 Stage 1- Number Classification API
 
 ## API documentation
+
 The API is built with Node.js and Express.js and is deployed on Render.
 
 ### API Endpoint
-1. GET / (https://josh-hng-stage0.onrender.com/)
-URL: https://josh-hng-stage0.onrender.com/
-Method: GET
-Response Format: JSON
-CORS: Enabled (Allows cross-origin requests)
+
+1. Request
+   Method: GET
+   URL: http://josh-hng-stage1.onrender.com/api/classify-number
+   Response Format: JSON
+   CORS: Enabled (Allows cross-origin requests)
+
+Query Parameters  
+number: The number to be classified.
+
+Response
+The response will contain the classification result based on the provided number.
+The response will be in JSON format and will contain the classification result based on the provided number. The response body will include the following properties:
+num (number): The classified number.
+is_prime (boolean): Indicates if the number is prime.
+is_perfect (boolean): Indicates if the number is perfect.
+properties (array): An array of additional properties of the number whcih are armstrong, odd and even
+digit_sum (number): The sum of the digits of the number.
+fun_fact (string): An interesting fact about the number.
+
+The response will also include the following headers:
+Status: 200
+Content-Type: application/json
 
 Response example
 {
-  "email": "oluwoleolusegun14@gmail.com",
-  "current_datetime": "2025-01-30T09:30:00Z",
-  "github_url": "https://github.com/yourusername/your-repo"
+"num": 371,
+"is_prime": false,
+"is_perfect": false,
+"properties": [
+"armstrong",
+"odd"
+],
+"digit_sum": 11,
+"fun_fact": "371 is a narcissistic number."
 }
 
 Technologies Used
